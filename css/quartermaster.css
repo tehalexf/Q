@@ -11,11 +11,33 @@ h3 {
 }
 
 .test {
-  background: gold;
+  background: linear-gradient(-45deg, gold , yellow);;
   margin:10px;
   text-align: center;
 }
 
 p {
 	margin:0px;
+}
+
+ul {
+	margin-left: 0px;
+}
+.dropdown-menu {
+  left: 50%;
+  right: auto;
+  text-align: center;
+  transform: translate(-50%, 0);
+}
+
+.div-inline{
+    display:inline-block;
+}
+
+.slick-slide {
+    outline: none
+}
+
+.btn {
+    border-radius: 24px;
 }
