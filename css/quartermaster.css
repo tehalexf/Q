@@ -41,17 +41,8 @@ ul {
   border-color: none;
   background-color: #0d47a1;
 }
-.btn:hover {
-  background-color: #082c63;
-}
-.btn:active {
-  background-color: #082c63;
-}
-.btn:focus {
-  background-color: #082c63;
-}
-.open > .dropdown-toggle.btn {
-  background-color: #082c63;
+.btn:hover, .btn:active, .btn:focus, .open > .dropdown-toggle.btn, .open > .dropdown-toggle.btn:active, .open > .dropdown-toggle.btn:focus, .open > .dropdown-toggle.btn:hover {
+  background-color: #082c63 !important;
 }
 #filterbtns {
   padding-top: 10px;
@@ -66,10 +57,7 @@ nav {
   background-color: #1565c0 !important;
   color: white !important;
 }
-.navbar-inverse .navbar-brand {
-  color: white !important;
-}
-.navbar-inverse .navbar-nav > li > a {
+.navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav > li > a {
   color: white !important;
 }
 .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav .open > a {
