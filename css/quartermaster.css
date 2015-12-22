@@ -22,13 +22,18 @@ ul {
   margin-left: 0px;
 }
 .dropdown-menu {
-  text-align: center;
   background-color: #e3f2fd;
-  min-width: 10px;
+  min-width: 0px;
 }
 .dropdown-menu > li > a:hover {
   color:white;
   background-color: #1565c0;
+}
+#filter > ul {
+  left: 15%;
+}
+#viewing > ul {
+  left: 2%;
 }
 .div-inline {
   display: inline-block;
