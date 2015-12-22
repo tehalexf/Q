@@ -1,6 +1,7 @@
 body {
   background: #bbdefb;
   min-height: 2000px;
+  min-width: 470px;
   padding-top: 70px;
 }
 h3 {
@@ -11,7 +12,6 @@ h3 {
 .test {
   color: white;
   background: #2196f3;
-  ;
   margin: 10px;
   text-align: center;
 }
@@ -22,12 +22,13 @@ ul {
   margin-left: 0px;
 }
 .dropdown-menu {
-  left: 50%;
-  right: auto;
   text-align: center;
-  transform: translate(-50%, 0);
   background-color: #e3f2fd;
-  min-width: 0px;
+  min-width: 10px;
+}
+.dropdown-menu > li > a:hover {
+  color:white;
+  background-color: #1565c0;
 }
 .div-inline {
   display: inline-block;
@@ -37,8 +38,41 @@ ul {
 }
 .btn {
   border-radius: 24px;
+  border-color: none;
   background-color: #0d47a1;
+}
+.btn:hover {
+  background-color: #082c63;
+}
+.btn:active {
+  background-color: #082c63;
+}
+.btn:focus {
+  background-color: #082c63;
+}
+.open > .dropdown-toggle.btn {
+  background-color: #082c63;
 }
 #filterbtns {
   padding-top: 10px;
+}
+.slick-prev:before {
+  color: #2196f3 !important;
+}
+.slick-next:before {
+  color: #2196f3 !important;
+}
+nav {
+  background-color: #1565c0 !important;
+  color: white !important;
+}
+.navbar-inverse .navbar-brand {
+  color: white !important;
+}
+.navbar-inverse .navbar-nav > li > a {
+  color: white !important;
+}
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav .open > a {
+  background-color: #0d47a1 !important;
+  color: white !important
 }
