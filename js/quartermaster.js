@@ -2,7 +2,7 @@ $( document ).ready(function() {
 
 
 
- 
+  $('.Herp').removeClass('hidden');
 
 	$('.Herp').slick({
     dots:  true,
@@ -11,10 +11,10 @@ $( document ).ready(function() {
   slidesToScroll: 7
 });
 
-$( ".selectem" ).each(function() {
-  var cw = $( this ).width();
- $( this ).css({'height':cw+'px'});
-});
+// $( ".test" ).each(function() {
+//   var cw = $( this ).width();
+//  $( this ).css({'height':cw+'px'});
+// });
 
 
 });
