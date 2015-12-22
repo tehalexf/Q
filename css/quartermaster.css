@@ -1,0 +1,21 @@
+body {
+  background: skyblue;
+  min-height: 2000px;
+  padding-top: 70px;
+}
+
+h3 {
+  background: red;
+  margin:10px;
+  text-align: center;
+}
+
+.test {
+  background: gold;
+  margin:10px;
+  text-align: center;
+}
+
+p {
+	margin:0px;
+}
