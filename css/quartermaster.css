@@ -1,5 +1,5 @@
 body {
-  background: skyblue;
+  background: #82B1FF;
   min-height: 2000px;
   padding-top: 70px;
 }
@@ -11,7 +11,7 @@ h3 {
 }
 
 .test {
-  background: linear-gradient(-45deg, gold , yellow);;
+  background: #ffee58;;
   margin:10px;
   text-align: center;
 }
