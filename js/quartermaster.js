@@ -56,10 +56,10 @@ $('#testme').html(dummy.html());
 
 
 
-
 $('.myelement').on('afterChange', function(event, slick, currentSlide ){
   console.log(currentSlide);
 });
+
 
 
 
@@ -74,7 +74,7 @@ $('.myelement').on('afterChange', function(event, slick, currentSlide ){
   slidesToScroll: 6,
 
 });
-
+  $('#testme').removeClass('hidden');
 var d = new Date();
 var n = d.getHours();
 var e = d.getMinutes();
