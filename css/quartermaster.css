@@ -25,7 +25,7 @@ ul {
   min-width: 0px;
 }
 .dropdown-menu > li > a:hover {
-  color:white;
+  color: white;
   background-color: #1565c0;
 }
 #filter > ul {
@@ -46,29 +46,35 @@ ul {
   border-color: none;
   background-color: #0d47a1;
 }
-.btn-round:hover, .btn-round:active, .btn-round:focus,
-.open > .dropdown-toggle.btn-round, .open > .dropdown-toggle.btn-round:active,
-.open > .dropdown-toggle.btn-round:focus, .open > .dropdown-toggle.btn-round:hover {
+.btn-round:hover,
+.btn-round:active,
+.btn-round:focus,
+.open > .dropdown-toggle.btn-round,
+.open > .dropdown-toggle.btn-round:active,
+.open > .dropdown-toggle.btn-round:focus,
+.open > .dropdown-toggle.btn-round:hover {
   background-color: #082c63 !important;
   color: white;
 }
 #filterbtns {
   padding-top: 10px;
 }
-.slick-prev:before {
+.Herp > .slick-prev:before {
   color: #2196f3 !important;
 }
-.slick-next:before {
+.Herp > .slick-next:before {
   color: #2196f3 !important;
 }
 nav {
   background-color: #1565c0 !important;
   color: white !important;
 }
-.navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav > li > a {
+.navbar-inverse .navbar-brand,
+.navbar-inverse .navbar-nav > li > a {
   color: white !important;
 }
-.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav .open > a {
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav .open > a {
   background-color: #0d47a1 !important;
   color: white !important
 }
@@ -77,4 +83,23 @@ nav {
 }
 .time-btn {
   height: 40px;
+}
+#testme > .slick-prev {
+  left: 0px;
+  top: -10%;
+  display: inline;
+  transform: rotateZ(90deg);
+}
+#testme > .slick-next {
+  color: #2196f3 !important;
+  top: -10%;
+  right: 0px;
+  display: inline;
+  transform: rotateZ(90deg);
+}
+#testme > .slick-prev:before {
+  color: #2196f3 !important;
+}
+#testme > .slick-next:before {
+  color: #2196f3 !important;
 }
