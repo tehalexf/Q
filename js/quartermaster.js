@@ -30,7 +30,7 @@ $('.myelement').on('afterChange', function(event, slick, currentSlide ){
       vertical: true,
       verticalSwiping: true,
   slidesToShow: 6,
-  slidesToScroll: 1,
+  slidesToScroll: 6,
 
 });
 
