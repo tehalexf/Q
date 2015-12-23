@@ -80,10 +80,17 @@ nav {
 }
 .row-date {
   padding-bottom: 3px;
+  
+}
+.center-row {
+  width: 50%;
+  margin: 0 auto;
 }
 .time-btn {
-  height: 40px;
+  height: 60px;
+  width: 60px;
   border: none;
+  margin: 0 auto;
 }
 #testme {
   width: 70px;
@@ -107,6 +114,10 @@ nav {
 #testme > .slick-next:before {
   color: #2196f3 !important;
 }
-#testme > .slick-slide {
+#testme > .slick-list {
+  width: 70px;
+}
 
+.panel-margined {
+  margin-left: -9%;
 }

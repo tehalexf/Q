@@ -21,13 +21,22 @@ if ($(window).width() < 767) {
 });
 }
 
+$('.myelement').on('afterChange', function(event, slick, currentSlide ){
+  console.log(currentSlide);
+});
+
     $('#testme').slick({
+      speed: 50,
       vertical: true,
       verticalSwiping: true,
-  slidesToShow: 7,
-  slidesToScroll: 7,
+  slidesToShow: 6,
+  slidesToScroll: 1,
 
 });
+
+
+        
+
 
 
 // $( ".test" ).each(function() {
