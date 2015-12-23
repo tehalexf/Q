@@ -107,6 +107,6 @@ nav {
 #testme > .slick-next:before {
   color: #2196f3 !important;
 }
-#testme > .slick-list {
-  width: 70px;
+#testme > .slick-slide {
+
 }
