@@ -1,6 +1,6 @@
 body {
   background: #bbdefb;
-  min-width: 470px;
+  min-width: 700px;
   padding-top: 70px;
 }
 h3 {
@@ -83,6 +83,10 @@ nav {
 }
 .time-btn {
   height: 40px;
+  border: none;
+}
+#testme {
+  width: 70px;
 }
 #testme > .slick-prev {
   left: 0px;
@@ -93,7 +97,7 @@ nav {
 #testme > .slick-next {
   color: #2196f3 !important;
   top: -10%;
-  right: 0px;
+  right: 1px;
   display: inline;
   transform: rotateZ(90deg);
 }
@@ -102,4 +106,7 @@ nav {
 }
 #testme > .slick-next:before {
   color: #2196f3 !important;
+}
+#testme > .slick-list {
+  width: 70px;
 }
