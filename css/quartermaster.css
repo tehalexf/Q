@@ -29,10 +29,10 @@ ul {
   background-color: #1565c0;
 }
 #filter > ul {
-  left: 15%;
+  /*left: 15%;*/
 }
 #viewing > ul {
-  left: 2%;
+  /*left: 2%;*/
 }
 .div-inline {
   display: inline-block;
@@ -91,6 +91,7 @@ nav {
   width: 60px;
   border: none;
   margin: 0 auto;
+  padding:0px;
 }
 #testme {
   width: 70px;
@@ -120,4 +121,53 @@ nav {
 
 .panel-margined {
   margin-left: -9%;
+}
+
+
+
+
+.btn-currentday { 
+  color: #ffffff; 
+  background-color: #86B6DD; 
+  border-color: #28618E; 
+} 
+ 
+.btn-currentday:hover, 
+.btn-currentday:focus, 
+.btn-currentday:active, 
+.btn-currentday.active, 
+.open .dropdown-toggle.btn-currentday { 
+  color: #ffffff; 
+  background-color: #1C4262; 
+  border-color: #28618E; 
+} 
+ 
+.btn-currentday:active, 
+.btn-currentday.active, 
+.open .dropdown-toggle.btn-currentday { 
+  background-image: none; 
+} 
+ 
+.btn-currentday.disabled, 
+.btn-currentday[disabled], 
+fieldset[disabled] .btn-currentday, 
+.btn-currentday.disabled:hover, 
+.btn-currentday[disabled]:hover, 
+fieldset[disabled] .btn-currentday:hover, 
+.btn-currentday.disabled:focus, 
+.btn-currentday[disabled]:focus, 
+fieldset[disabled] .btn-currentday:focus, 
+.btn-currentday.disabled:active, 
+.btn-currentday[disabled]:active, 
+fieldset[disabled] .btn-currentday:active, 
+.btn-currentday.disabled.active, 
+.btn-currentday[disabled].active, 
+fieldset[disabled] .btn-currentday.active { 
+  background-color: #86B6DD; 
+  border-color: #28618E; 
+} 
+ 
+.btn-currentday .badge { 
+  color: #86B6DD; 
+  background-color: #ffffff; 
 }

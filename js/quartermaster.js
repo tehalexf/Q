@@ -21,9 +21,50 @@ if ($(window).width() < 767) {
 });
 }
 
+
+
+
+var derp = 8;
+var dummy = $("<div/>")
+
+
+for (var i = 0; i < 48; i++) {
+  var use = 0;
+  var sub = ":00";
+  var tim = 'A';
+  if (i % 2)
+    sub = ":30";
+
+  use = Math.floor(i/2) % 12;
+
+  if (use == 0)
+    use = 12;
+  
+
+  if (i > 23)
+    tim = 'P';
+
+
+
+    var temp = $("<div class='row row-date'><button id='timerow-" + String(i) + "' class='btn btn-default btn-block time-btn'>" + String(use) + String(sub) + tim + "</button></div>");
+
+    dummy.append(temp);
+}
+console.log(dummy.html())
+
+$('#testme').html(dummy.html());
+
+
+
+
 $('.myelement').on('afterChange', function(event, slick, currentSlide ){
   console.log(currentSlide);
 });
+
+
+
+
+
 
     $('#testme').slick({
       speed: 50,
@@ -34,9 +75,17 @@ $('.myelement').on('afterChange', function(event, slick, currentSlide ){
 
 });
 
+var d = new Date();
+var n = d.getHours();
+var e = d.getMinutes();
 
-        
-
+if (e >= 30)
+  d = 2 * n + 1;
+else
+  d = 2 * n;
+console.log('#timerow' + String(d));
+$('.myelement').slick('slickGoTo',d, false);
+$('#timerow-' + String(d)).addClass('btn-currentday');
 
 
 // $( ".test" ).each(function() {
