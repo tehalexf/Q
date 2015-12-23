@@ -92,6 +92,8 @@ nav {
   border: none;
   margin: 0 auto;
   padding:0px;
+  outline: none !important;
+  font-color: black;
 }
 #testme {
   width: 70px;
@@ -124,49 +126,16 @@ nav {
 }
 
 .btn-currentday { 
-  color: #ffffff !important;
-  background-color: #86B6DD !important;
-  border-color: #28618E; 
+  font-weight: bold;
 } 
- 
-.btn-currentday:hover, 
-.btn-currentday:focus, 
-.btn-currentday:active,
-.open .dropdown-toggle.btn-currentday { 
-  color: #ffffff !important;
-  background-color: #1C4262 !important;
-  border-color: #28618E; 
-} 
- 
-.btn-currentday:active, 
-.btn-currentday.active, 
-.open .dropdown-toggle.btn-currentday { 
-  color: #ffffff; 
-  background-color: #1C4262; 
-  border-color: #28618E; 
-  background-image: none; 
-} 
- 
-.btn-currentday.disabled, 
-.btn-currentday[disabled], 
-fieldset[disabled] .btn-currentday, 
-.btn-currentday.disabled:hover, 
-.btn-currentday[disabled]:hover, 
-fieldset[disabled] .btn-currentday:hover, 
-.btn-currentday.disabled:focus, 
-.btn-currentday[disabled]:focus, 
-fieldset[disabled] .btn-currentday:focus, 
-.btn-currentday.disabled:active, 
-.btn-currentday[disabled]:active, 
-fieldset[disabled] .btn-currentday:active, 
-.btn-currentday.disabled.active, 
-.btn-currentday[disabled].active, 
-fieldset[disabled] .btn-currentday.active { 
-  background-color: #86B6DD; 
-  border-color: #28618E; 
-} 
- 
-.btn-currentday .badge { 
-  color: #86B6DD; 
-  background-color: #ffffff; 
+
+.heatmap-box {
+  height: 10px;
+  width: 10px;
+  border: none;
+  background:red;
+}
+
+.invis-table {
+
 }

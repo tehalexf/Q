@@ -46,7 +46,7 @@ for (var i = 0; i < 48; i++) {
 
 
 
-    var temp = $("<div class='row row-date'><button id='timerow-" + String(i) + "' class='btn btn-default btn-block time-btn'>" + String(use) + String(sub) + tim + "</button></div>");
+    var temp = $("<div class='row row-date'><button id='timerow-" + String(i) + "' class='time-btn btn btn-default btn-block '>" + String(use) + String(sub) + tim + "</button></div>");
 
     dummy.append(temp);
 }
@@ -54,6 +54,12 @@ console.log(dummy.html())
 
 $('#testme').html(dummy.html());
 
+
+$('.time-btn').on('click', function() {
+  $('.time-btn').removeClass('active');
+  $(this).addClass('active');
+  console.log($(this));
+});
 
 
 $('.myelement').on('afterChange', function(event, slick, currentSlide ){
