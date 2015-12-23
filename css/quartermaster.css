@@ -145,6 +145,9 @@ nav {
 .btn-currentday:active, 
 .btn-currentday.active, 
 .open .dropdown-toggle.btn-currentday { 
+  color: #ffffff; 
+  background-color: #1C4262; 
+  border-color: #28618E; 
   background-image: none; 
 } 
  
