@@ -93,7 +93,7 @@ nav {
   margin: 0 auto;
   padding:0px;
   outline: none !important;
-  font-color: black;
+  color: black;
 }
 #testme {
   width: 70px;
@@ -132,7 +132,7 @@ nav {
 .heatmap-box {
   height: 10px;
   width: 10px;
-  border: none;
+  border: none !important;
   margin: 0 auto;
   padding:2px;
   background:red;
@@ -142,12 +142,12 @@ nav {
   margin:0px;
   padding:0px;
   background:#bbdefb;
-  border:#bbdefb;
-  outline: #bbdefb !important;
 }
-
+tbody {
+  border: none !important;
+}
 table {
-    border-collapse: collapse;
+  border:none !important;
 }
 td {
     padding: 0;
