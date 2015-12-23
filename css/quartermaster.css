@@ -124,8 +124,8 @@ nav {
 }
 
 .btn-currentday { 
-  color: #ffffff; 
-  background-color: #86B6DD; 
+  color: #ffffff !important;
+  background-color: #86B6DD !important;
   border-color: #28618E; 
 } 
  
@@ -133,8 +133,8 @@ nav {
 .btn-currentday:focus, 
 .btn-currentday:active,
 .open .dropdown-toggle.btn-currentday { 
-  color: #ffffff; 
-  background-color: #1C4262; 
+  color: #ffffff !important;
+  background-color: #1C4262 !important;
   border-color: #28618E; 
 } 
  
