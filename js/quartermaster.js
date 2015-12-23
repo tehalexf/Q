@@ -21,7 +21,13 @@ if ($(window).width() < 767) {
 });
 }
 
+    $('#testme').slick({
+      vertical: true,
+      verticalSwiping: true,
+  slidesToShow: 7,
+  slidesToScroll: 7,
 
+});
 
 
 // $( ".test" ).each(function() {
