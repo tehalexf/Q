@@ -123,9 +123,6 @@ nav {
   margin-left: -9%;
 }
 
-
-
-
 .btn-currentday { 
   color: #ffffff; 
   background-color: #86B6DD; 
@@ -134,8 +131,7 @@ nav {
  
 .btn-currentday:hover, 
 .btn-currentday:focus, 
-.btn-currentday:active, 
-.btn-currentday.active, 
+.btn-currentday:active,
 .open .dropdown-toggle.btn-currentday { 
   color: #ffffff; 
   background-color: #1C4262; 
