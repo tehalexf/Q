@@ -130,17 +130,23 @@ nav {
 } 
 
 .heatmap-box {
-  height: 10px;
-  width: 10px;
+  height: 5px;
+  width: 5px;
   border: none !important;
   margin: 0 auto;
-  padding:2px;
-  background:red;
+  padding:0px;
+  background:#F5FAFE;
+}
+
+.selected-box {
+
+  background: #2196f3 !important;
+
 }
 
 .invis-table {
-  margin:0px;
-  padding:0px;
+  margin:2px;
+  padding:2px;
   background:#bbdefb;
 }
 tbody {
