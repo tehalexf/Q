@@ -63,23 +63,21 @@ function loadCorrectData() {
                     } else {
                         var tempNode = $('<div style="font-weight: bold; margin-top:10px;">ECS ' + String(element) + ' Tutors:</div>')
                     }
-                    
-                    
 
                     console.log(tempNode);
                     currentList = currentDisplay[element];
                     var tempLength = currentList.length;
-                    
-                    for (var i = 0; i < tempLength; i++) {                      
-                        var tempContent = $('<div style="font-weight: normal;"> ' + currentList[i] + ' </div>');                       
+
+                    for (var i = 0; i < tempLength; i++) {
+                        var tempContent = $('<div style="font-weight: normal;"> ' + currentList[i] + ' </div>');
                         console.log(tempNode);
                         tempNode = tempNode.add(tempContent);
                         console.log(tempNode);
-                                                
+
                     }
                     dummyNode.append(tempNode);
                 }
-                
+
                 $('#hour-content').html(dummyNode.html());
 
             } else {
