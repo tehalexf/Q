@@ -2,285 +2,145 @@
 <html>
 
 <head>
-  <title>Test Site</title>
-  <meta charset="UTF-8">
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-  <link href="slick.css" rel="stylesheet">
-  <link href="slick-theme.css" rel="stylesheet">
-
-  <link rel="stylesheet" href="css/foundation.css" />
-  <link rel="stylesheet" href="css/app.css" />
-
-  <link href="css/quartermaster.css" rel="stylesheet">
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  <script type="text/javascript" src="slick.min.js"></script>
-
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-  <script src="js/quartermaster.js"></script>
-
+    <title>Test Site</title>
+    <meta charset="UTF-8">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="slick.css" rel="stylesheet">
+    <link href="slick-theme.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/foundation.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link href="css/quartermaster.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="slick.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="js/quartermaster.js"></script>
 </head>
 
 <body>
-
-  <nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Project name</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a>
+                            </li>
+                            <li><a href="#">Another action</a>
+                            </li>
+                            <li><a href="#">Something else here</a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">Nav header</li>
+                            <li><a href="#">Separated link</a>
+                            </li>
+                            <li><a href="#">One more separated link</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="../navbar-static-top/">Static top</a>
+                    </li>
+                    <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </nav>
     <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">Project name</a>
-      </div>
-      <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Home</a>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Action</a>
-              </li>
-              <li><a href="#">Another action</a>
-              </li>
-              <li><a href="#">Something else here</a>
-              </li>
-              <li role="separator" class="divider"></li>
-              <li class="dropdown-header">Nav header</li>
-              <li><a href="#">Separated link</a>
-              </li>
-              <li><a href="#">One more separated link</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="../navbar-static-top/">Static top</a>
-          </li>
-          <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a>
-          </li>
-        </ul>
-      </div>
-      <!--/.nav-collapse -->
+        <div class="row center-block">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-10">
+                <div id="maindate" class="Herp hidden">
+                </div>
+            </div>
+        </div>
+        <div class="row center-block">
+            <div class="col-md-3">
+            </div>
+            <div class="col-md-6 text-center" id="filterbtns">
+                <div class="dropdown div-inline" id="viewing">
+                    <button class="btn btn-round dropdown-toggle" type="button" data-toggle="dropdown">View
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <!-- Maybe auto-populate? -->
+                        <li><a href="#">Tutor Hours</a>
+                        </li>
+                        <li class="disabled"><a href="#">Office Hours</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+                <div class="dropdown div-inline" id="filter">
+                    <button class="btn btn-round btn-round dropdown-toggle" type="button" data-toggle="dropdown">Filter
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <!-- Maybe auto-populate? -->
+                        <li><a href="#">ECS 10</a>
+                        </li>
+                        <li><a href="#">ECS 20</a>
+                        </li>
+                        <li><a href="#">ECS 30</a>
+                        </li>
+                        <li><a href="#">ECS 40</a>
+                        </li>
+                        <li><a href="#">ECS 50</a>
+                        </li>
+                        <li><a href="#">ECS 60</a>
+                        </li>
+                    </ul>
+                </div>
+                <button type="button" class="btn btn-round div-inline">Clear</button>
+            </div>
+        </div>
+        <br />
+        <div class="row center-block">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-1">
+                <div id="testme" class="myelement text-center hidden">
+                </div>
+            </div>
+            <div class="col-xs-1">
+            </div>
+            <div class="col-xs-8">
+                <table cellpadding="0" cellspacing="0" style="width:109%; margin-left:-9%; padding:0px;">
+                    <tr id="top-heatmap">
+                    </tr>
+                </table>
+                <div class="panel panel-primary panel-margined">
+                    <div id="hour-heading" class="panel-heading">
+                        8:00
+                    </div>
+                    <div id="hour-content" class="panel-body">
+                        panel
+                        <br />of
+                        <br />stuff
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-1">
+            </div>
+        </div>
     </div>
-  </nav>
-  <div class="container">
-    <div class="row center-block">
-      <div class="col-md-1">
-      </div>
-      <div class="col-md-10">
-
-        <div class="Herp hidden">
-          <div>
-            <div class="test">
-              <p>Dec</p>
-              <p style="font-size:27px">1</p>
-              <p>Mon</p>
-            </div>
-          </div>
-          <div>
-            <div class="test">
-              <p>Dec</p>
-              <p style="font-size:27px">2</p>
-              <p>Mon</p>
-            </div>
-          </div>
-          <div>
-            <div class="test">
-              <p>Dec</p>
-              <p style="font-size:27px">3</p>
-              <p>Mon</p>
-            </div>
-          </div>
-          <div>
-            <div class="test">
-              <p>Dec</p>
-              <p style="font-size:27px">4</p>
-              <p>Mon</p>
-            </div>
-          </div>
-          <div>
-            <div class="test">
-              <p>Dec</p>
-              <p style="font-size:27px">5</p>
-              <p>Mon</p>
-            </div>
-          </div>
-          <div>
-            <div class="test">
-              <p>Dec</p>
-              <p style="font-size:27px">6</p>
-              <p>Mon</p>
-            </div>
-          </div>
-          <div>
-            <div class="test">
-              <p>Dec</p>
-              <p style="font-size:27px">7</p>
-              <p>Mon</p>
-            </div>
-          </div>
-          <div>
-            <div class="test">
-              <p>Dec</p>
-              <p style="font-size:27px">8</p>
-              <p>Mon</p>
-            </div>
-          </div>
-          <div>
-            <div class="test">
-              <p>Dec</p>
-              <p style="font-size:27px">9</p>
-              <p>Mon</p>
-            </div>
-          </div>
-          <div>
-            <div class="test">
-              <p>Dec</p>
-              <p style="font-size:27px">10</p>
-              <p>Mon</p>
-            </div>
-          </div>
-          <div>
-            <div class="test">
-              <p>Dec</p>
-              <p style="font-size:27px">11</p>
-              <p>Mon</p>
-            </div>
-          </div>
-          <div>
-            <div class="test">
-              <p>Dec</p>
-              <p style="font-size:27px">12</p>
-              <p>Mon</p>
-            </div>
-          </div>
-          <div>
-            <div class="test">
-              <p>Dec</p>
-              <p style="font-size:27px">13</p>
-              <p>Mon</p>
-            </div>
-          </div>
-          <div>
-            <div class="test">
-              <p>Dec</p>
-              <p style="font-size:27px">14</p>
-              <p>Mon</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row center-block">
-      <div class="col-md-3">
-      </div>
-      <div class="col-md-6 text-center" id="filterbtns">
-        <div class="dropdown div-inline" id="viewing">
-          <button class="btn btn-round dropdown-toggle" type="button" data-toggle="dropdown">View
-            <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu">
-            <!-- Maybe auto-populate? -->
-            <li><a href="#">Office Hours</a>
-            </li>
-            <li><a href="#">Tutor Hours</a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="dropdown div-inline" id="filter">
-          <button class="btn btn-round btn-round dropdown-toggle" type="button" data-toggle="dropdown">Filter
-            <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu">
-            <!-- Maybe auto-populate? -->
-            <li><a href="#">ECS 10</a>
-            </li>
-            <li><a href="#">ECS 20</a>
-            </li>
-            <li><a href="#">ECS 30</a>
-            </li>
-            <li><a href="#">ECS 40</a>
-            </li>
-            <li><a href="#">ECS 50</a>
-            </li>
-            <li><a href="#">ECS 60</a>
-            </li>
-          </ul>
-        </div>
-        <button type="button" class="btn btn-round div-inline">Clear</button>
-      </div>
-    </div>
-    <br />
-    <div class="row center-block">
-      <div class="col-xs-1"></div>
-
-      <div class="col-xs-1">
-        
-        <div id="testme" class="myelement text-center hidden">
-
-        </div>
-
-      </div>
-      <div class="col-xs-1">
-      </div>
-      <div class="col-xs-8">
-       
-
-
-<table cellpadding="0" cellspacing="0" style="width:109%; margin-left:-9%; padding:0px;">
-  <tr id="top-heatmap">
-    
-
-
-    
-
-
-    
-
-
-
-    
-
-  </tr>
-</table>
-
-
-
-
-
-
-
-
-
-
-        <div class="panel panel-primary panel-margined">
-          <div class="panel-heading">
-            8:00
-          </div>
-          <div class="panel-body">
-            panel
-            <br />of
-            <br />stuff
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-
-
-  </div>
-
-  <script src="js/vendor/what-input.min.js"></script>
-  <script src="js/foundation.min.js"></script>
-  <script src="js/app.js"></script>
+    <script src="js/vendor/what-input.min.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script src="js/app.js"></script>
 </body>
-
 
 </html>
