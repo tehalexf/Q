@@ -27,37 +27,56 @@ h3 {
     background: #074A81;
 }
 
-.bold-n-stuff:hover {
+/*.bold-n-stuff:hover {
     background: #E2E2E2 !important;
 }
 
 .bold-n-stuff:active {
     background: #BFBFBF !important;
-}
+}*/
+
+/*.bold-n-stuff {*/
+    /*Aka current day*/
+    
+    /*background: #0A5FA5;*/
+
+/*    font-weight: bold;
+    background-color: white !important;
+    border: 5px solid white !important;*/
+/*}*/
+
+/*.bold-n-stuff > .sub-box {*/
+    /*Aka current day*/
+  /*  font-weight: bold;
+    color: #0A5FA5;
+  */
+    /*background: #0A5FA5;*/
+    /*border:5px solid white !important; */
+/*}*/
 
 .bold-n-stuff {
     /*Aka current day*/
     font-weight: bold;
     /*background: #0A5FA5;*/
-    background-color: white !important;
+    /*background-color: white !important;*/
     border: 5px solid white !important;
 }
 
-.bold-n-stuff > .sub-box {
+/*.bold-n-stuff > .sub-box {
     /*Aka current day*/
-    font-weight: bold;
-    color: #0A5FA5;
+    /*font-weight: bold;
+    color: #0A5FA5;*/
     /*background: #0A5FA5;*/
     /*border:5px solid white !important; */
-}
+/*}*/
 
 .activated {
     background: #0A66B1;
 }
 
-.bold-n-stuff.activated {
+/*.bold-n-stuff.activated {
     background: #E2E2E2 !important;
-}
+}*/
 
 p {
     margin: 0px;
