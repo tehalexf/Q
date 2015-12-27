@@ -137,7 +137,9 @@ function selectDate(datenumber) {
     $('.test:eq(' + datenumber + ')').addClass('activated');
     activeDate = parseInt(datenumber);
     console.log('BP2');
-    if (activeDate == todayDate) {
+    console.log(activeDate)
+    console.log(todayDate)
+    if (activeDate == 0) {
         console.log('BP3');
         var hour = currentHour();
         console.log('correct');
@@ -175,7 +177,7 @@ function selectDate(datenumber) {
     if (filtered) {
 
     } else
-    $('#heatmap-box').css('background-color', '#FFFFFF');
+    $('.heatmap-box').css('background-color', '#FFFFFF');
     if (dataCache) {
         for (var i = 0; i < 48; i++) {
 
@@ -402,8 +404,9 @@ function startup(date) {
 
     var thisDate = new Date(date);
 
-    todayDate = thisDate.getDate();
+    todayDate = addDays(thisDate, -1).getDate();
 
+    console.log('THIS DATE IS ' + todayDate)
     for (var i = -1; i < 13; i++) {
         var tempDate = addDays(thisDate, i)
         $('#cmonth-' + String(i + 1)).html(monthNames[tempDate.getMonth()]);
