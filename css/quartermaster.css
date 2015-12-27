@@ -1,6 +1,5 @@
 body {
     background: #bbdefb;
-    background: linear-gradient(#bbdefb, #97CDF9); /* Standard syntax */
     min-width: 700px;
     padding-top: 70px;
     background-attachment: fixed;
@@ -29,6 +28,7 @@ h3 {
     background: #074A81;
 }
 
+
 /*.bold-n-stuff:hover {
     background: #E2E2E2 !important;
 }
@@ -37,23 +37,41 @@ h3 {
     background: #BFBFBF !important;
 }*/
 
+
 /*.bold-n-stuff {*/
-    /*Aka current day*/
-    
-    /*background: #0A5FA5;*/
+
+
+/*Aka current day*/
+
+
+/*background: #0A5FA5;*/
+
 
 /*    font-weight: bold;
     background-color: white !important;
     border: 5px solid white !important;*/
+
+
 /*}*/
 
+
 /*.bold-n-stuff > .sub-box {*/
-    /*Aka current day*/
-  /*  font-weight: bold;
+
+
+/*Aka current day*/
+
+
+/*  font-weight: bold;
     color: #0A5FA5;
   */
-    /*background: #0A5FA5;*/
-    /*border:5px solid white !important; */
+
+
+/*background: #0A5FA5;*/
+
+
+/*border:5px solid white !important; */
+
+
 /*}*/
 
 .bold-n-stuff {
@@ -64,17 +82,27 @@ h3 {
     border: 5px solid white !important;
 }
 
+
 /*.bold-n-stuff > .sub-box {
     /*Aka current day*/
-    /*font-weight: bold;
+
+
+/*font-weight: bold;
     color: #0A5FA5;*/
-    /*background: #0A5FA5;*/
-    /*border:5px solid white !important; */
+
+
+/*background: #0A5FA5;*/
+
+
+/*border:5px solid white !important; */
+
+
 /*}*/
 
 .activated {
     background: #0A66B1;
 }
+
 
 /*.bold-n-stuff.activated {
     background: #E2E2E2 !important;
