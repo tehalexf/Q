@@ -162,13 +162,43 @@ function selectDate(datenumber) {
         $('#timerow-16').addClass('active');
         thisHour = 16;
     }
-
+    var dayaCache;
+    var heatCache;
     if (data.hasOwnProperty(activeDate)) {
         dataCache = data[activeDate];
+        heatCache = heatMapData[activeDate];
     } else {
         dataCache = undefined;
     }
+
+
     //TODO: Heatmap Loading!
+    if (filtered) {
+
+    } else
+    if (dataCache) {
+    for (var i = 0; i < 48; i++) {
+        
+            console.log(i)
+            
+            
+            
+            if (String(i) in dataCache) {
+                var sum = 0;    
+
+
+                for (var key in dataCache[String(i)]) {
+                    sum += dataCache[String(i)][key].length;
+                
+            $('#heatrow-' + String(i)).children(":first").css('background-color', shadeColor2('#2196F3', +(sum * -1.25 / heatCache['total']).toFixed(1) % 1));        
+                }
+            }
+            
+        }
+
+            
+
+    }
 
     loadCorrectData();
 
