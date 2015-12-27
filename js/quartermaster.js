@@ -175,6 +175,7 @@ function selectDate(datenumber) {
     if (filtered) {
 
     } else
+
     if (dataCache) {
         for (var i = 0; i < 48; i++) {
 
@@ -192,6 +193,8 @@ function selectDate(datenumber) {
 
         }
 
+    } else {
+        $('#heatmap-box').css('background-color', '#FFFFFF');
     }
 
     loadCorrectData();
