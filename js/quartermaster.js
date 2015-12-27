@@ -3,7 +3,6 @@ var started = true;
 var todayDate = -1;
 var thisHour = -1;
 var fullHour = {};
-
 var data = {
     //format is day# : hour# : data
     1: {
@@ -13,34 +12,6 @@ var data = {
         }
     }
 };
-
-var heatMapData = {
-    0: {
-        'total': 5,
-        '20': 3,
-        '30': 2
-    },
-    1: {
-        'total': 10,
-        '20': 3,
-        '30': 7
-    },
-    2: {
-        'total': 10,
-        '20': 7,
-        '30': 3
-    },
-    3: {
-        'total': 5,
-        '20': 3,
-        '30': 2
-    },
-    'totals': {
-        'total': 30,
-        '20': 16,
-        '30': 14
-    }
-}
 var filtered = undefined;
 var dataCache = undefined;
 
@@ -352,20 +323,6 @@ function startup(date) {
         $('#cday-' + String(i + 1)).html(tempDate.getDate());
         $('#cdow-' + String(i + 1)).html(dayNames[tempDate.getDay()]);
         dates.push(tempDate);
-        var cachedTotals = heatMapData['totals'];
-        if ((i + 1) in heatMapData) {
-            var cachedDay = heatMapData[(i + 1)];
-            if (filtered) {
-                //TODO: FILTER
-            } else {//2196f3
-                $('#cdow-' + String(i + 1)).css('background-color', shadeColor2('#2196f3',  +(cachedDay['total'] * -2.0 / cachedTotals['total']).toFixed(1) % 1));
-                console.log('AAAAAA');
-                console.log(cachedDay['total']);
-                console.log(cachedTotals['total']);
-                console.log(cachedDay['total'] * 1.0 / cachedTotals['total']);
-                console.log((cachedDay['total'] * 1.0 / cachedTotals['total']).toFixed(1));
-            }
-        }
     }
 
     $('#cmonth-1').parent().addClass('bold-n-stuff');
