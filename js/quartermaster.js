@@ -3,7 +3,7 @@ var started = true;
 var todayDate = -1;
 var thisHour = -1;
 var fullHour = {};
-
+var ignoreChange = false;
 var data = {
     //format is day# : hour# : data
     1: {
@@ -52,6 +52,16 @@ function shadeColor2(color, percent) {
         G = f >> 8 & 0x00FF,
         B = f & 0x0000FF;
     return "#" + (0x1000000 + (Math.round((t - R) * p) + R) * 0x10000 + (Math.round((t - G) * p) + G) * 0x100 + (Math.round((t - B) * p) + B)).toString(16).slice(1);
+}
+
+function changeTime(thisElem) {
+    $('.myelement').slick('slickGoTo', thisElem.attr('time-index'), false);
+    $('.selected-box').removeClass('selected-box');
+    $('#heatrow-' + String(thisElem.attr('time-index'))).addClass('selected-box');
+    $('.time-btn').removeClass('active');
+    thisElem.addClass('active');
+    thisHour = parseInt(thisElem.attr('time-index'));
+    loadCorrectData();
 }
 
 function loadCorrectData() {
@@ -117,26 +127,33 @@ function loadCorrectData() {
 
         //has data for that date
     }
+    console.log('DONEZOS');
 }
 
 function selectDate(datenumber) {
     //Calendar is clicked or changed. Loading stuff should happen here.
-    console.log("selectDate is called");
+    console.log("selectDate is called on", datenumber);
     $('.test').removeClass('activated');
     $('.test:eq(' + datenumber + ')').addClass('activated');
     activeDate = parseInt(datenumber);
+    console.log('BP2');
     if (activeDate == todayDate) {
-
+        console.log('BP3');
         var hour = currentHour();
         console.log('correct');
-        console.log(hour);
+
+        ignoreChange = true;
         $('.myelement').slick('slickGoTo', hour, false);
+        ignoreChange = true;
+        console.log('correct2');
         $('.selected-box').removeClass('selected-box');
         $('#heatrow-' + String(hour)).addClass('selected-box');
         $('.time-btn').removeClass('active');
         $('#timerow-' + String(hour)).addClass('active');
         thisHour = hour;
+        console.log('TESTME');
     } else {
+        console.log('BP4');
         $('.myelement').slick('slickGoTo', 16, false);
         $('.selected-box').removeClass('selected-box');
         $('#heatrow-' + String(16)).addClass('selected-box');
@@ -220,7 +237,7 @@ function setup() {
         fullHour[i] = String(use) + String(sub) + longtim;
 
         var temp = $("<div class='row row-date'><button time-index='" + String(i) + "' id='timerow-" + String(i) + "' class='time-btn btn btn-default btn-block '>" + String(use) + String(sub) + tim + "</button></div>");
-        var temp2 = $("<td id='heatrow-" + String(i) + "' class='invis-table'><div class='heatmap-box'></div></td>");
+        var temp2 = $("<td title='" + fullHour[i] + "' data-heatid='" + String(i) + "' id='heatrow-" + String(i) + "' class='invis-table'><div class='heatmap-box'></div></td>");
 
         dummy.append(temp);
         dummy2.append(temp2);
@@ -231,27 +248,22 @@ function setup() {
 
     $('.time-btn').on('click', function() {
         //On click of a timke button
-
-        $('.selected-box').removeClass('selected-box');
-        $('#heatrow-' + String($(this).attr('time-index'))).addClass('selected-box');
-        $('.time-btn').removeClass('active');
-        $(this).addClass('active');
-        thisHour = parseInt($(this).attr('time-index'));
-        loadCorrectData();
+        changeTime($(this));
     });
 
     $('.myelement').on('afterChange', function(event, slick, currentSlide) {
+        console.log('AFTER CHANGED');
         if (activeDate == 0 && currentSlide == 0) {
             $('.myelement').slick('slickSetOption', 'infinite', false, true);
             console.log('set uninfinite)');
-        } else if (activeDate == 0 && currentSlide == 6) {
+        } else if (activeDate == 0 && currentSlide >= 6) {
             $('.myelement').slick('slickSetOption', 'infinite', true, true);
             console.log('set infinite)');
         }
         if (activeDate == 13 && currentSlide == 42) {
             $('.myelement').slick('slickSetOption', 'infinite', false, true);
             console.log('set uninfinite)');
-        } else if (activeDate == 13 && currentSlide == 36) {
+        } else if (activeDate == 13 && currentSlide <= 36) {
             $('.myelement').slick('slickSetOption', 'infinite', true, true);
             console.log('set infinite)');
         }
@@ -259,20 +271,22 @@ function setup() {
     });
 
     $('.myelement').on('beforeChange', function(event, slick, previousSlide, currentSlide) {
+        if (!ignoreChange) {
+            if (previousSlide == 0 && currentSlide == 42 && started == false) {
+                activeDate = parseInt(activeDate) - 1;
+                selectDate(activeDate);
+                $('#maindate').slick('slickGoTo', activeDate, false);
 
-        if (previousSlide == 0 && currentSlide == 42 && started == false) {
-            activeDate = parseInt(activeDate) - 1;
-            selectDate(activeDate);
-            $('#maindate').slick('slickGoTo', activeDate, false);
+            } else if (previousSlide == 42 && currentSlide == 0 && started == false) {
 
-        } else if (previousSlide == 42 && currentSlide == 0 && started == false) {
+                activeDate = parseInt(activeDate) + 1;
 
-            activeDate = parseInt(activeDate) + 1;
+                selectDate(activeDate);
+                $('#maindate').slick('slickGoTo', activeDate, false);
 
-            selectDate(activeDate);
-            $('#maindate').slick('slickGoTo', activeDate, false);
-
+            }
         }
+
     });
 
     $('#testme').slick({
@@ -303,16 +317,33 @@ function setup() {
 
     $('.test').on('click', function() {
         //When the calendar is clicked (specific date)
-
+        console.log('FIRST');
         if (todayDate != $(this).children('p:eq(1)').html()) {
             $('.btn-currentday').removeClass('btn-currentday');
         } else {
             var d = currentHour();
             $('#timerow-' + String(d)).addClass('btn-currentday');
         }
-
+        console.log('BP');
         selectDate($(this).parent().attr('data-slick-index'));
+        console.log('HAPPENS ONCE');
     });
+
+    $('.invis-table').on('click', function() {
+        console.log(parseInt($(this).attr('data-heatid')));
+        changeTime($('#timerow-' + parseInt($(this).attr('data-heatid'))));
+        // $('.myelement').slick('slickGoTo', parseInt($(this).attr('data-heatid')), false);
+        // if (todayDate != $(this).children('p:eq(1)').html()) {
+        //     $('.btn-currentday').removeClass('btn-currentday');
+        // } else {
+        //     var d = currentHour();
+        //     $('#timerow-' + String(d)).addClass('btn-currentday');
+        // }
+
+        // selectDate($(this).parent().attr('data-slick-index'));
+    });
+
+    $('.myelement').slick('slickGoTo', d, false);
 
     started = false;
 }
@@ -358,17 +389,17 @@ function startup(date) {
             var cachedDay = heatMapData[(i + 1)];
             if (filtered) {
                 //TODO: FILTER
-            } else {//2196f3
-                $('#cdow-' + String(i + 1)).css('background-color', shadeColor2('#2196F3',  +(cachedDay['total'] * -1.25 / cachedTotals['total']).toFixed(1) % 1)).parent().attr('title', String(cachedDay['total']) + ' tutors' );
+            } else { //2196f3
+                $('#cdow-' + String(i + 1)).css('background-color', shadeColor2('#2196F3', +(cachedDay['total'] * -1.25 / cachedTotals['total']).toFixed(1) % 1)).parent().attr('title', String(cachedDay['total']) + ' tutors');
             }
         } else {
-            $('#cdow-' + String(i + 1)).css('background-color', '#2196F3').parent().attr('title', '0 tutors' );
+            $('#cdow-' + String(i + 1)).css('background-color', '#2196F3').parent().attr('title', '0 tutors');
         }
     }
     $('[data-toggle="tooltip"]').tooltip({
-   animated : 'fade',
-   placement : 'bottom',
-   container: 'body'
+        animated: 'fade',
+        placement: 'bottom',
+        container: 'body'
     });
     $('#cmonth-1').parent().addClass('bold-n-stuff');
 

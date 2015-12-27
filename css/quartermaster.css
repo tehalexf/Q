@@ -233,6 +233,7 @@ nav {
     margin: 2px;
     padding: 2px;
     background: #bbdefb;
+    cursor: pointer;
 }
 
 tbody {
