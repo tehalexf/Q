@@ -189,6 +189,7 @@ function setup() {
         });
     } else {
         $('.Herp').slick({
+            speed: 200,
             dots: true,
             infinite: false,
             slidesToShow: 7,
@@ -338,7 +339,7 @@ function startup(date) {
     var dummy3 = $("<div/>")
 
     for (var i = 0; i < 14; i++) {
-        dummy3.append('<div><div class="test"><p id="cmonth-' + String(i) + '">Dec</p><p id="cday-' + String(i) + '" style="font-size:27px">1</p><p id="cdow-' + String(i) + '" >Mon</p></div></div>');
+        dummy3.append('<div><div class="test" data-toggle="tooltip" ><div class="sub-box" id="cmonth-' + String(i) + '">Dec</div><div  class="sub-box"  id="cday-' + String(i) + '" style="font-size:27px">1</div><div id="cdow-' + String(i) + '" >Mon</div></div></div>');
     }
     $('#maindate').html(dummy3.html());
 
@@ -358,16 +359,17 @@ function startup(date) {
             if (filtered) {
                 //TODO: FILTER
             } else {//2196f3
-                $('#cdow-' + String(i + 1)).css('background-color', shadeColor2('#2196f3',  +(cachedDay['total'] * -2.0 / cachedTotals['total']).toFixed(1) % 1));
-                console.log('AAAAAA');
-                console.log(cachedDay['total']);
-                console.log(cachedTotals['total']);
-                console.log(cachedDay['total'] * 1.0 / cachedTotals['total']);
-                console.log((cachedDay['total'] * 1.0 / cachedTotals['total']).toFixed(1));
+                $('#cdow-' + String(i + 1)).css('background-color', shadeColor2('#2196F3',  +(cachedDay['total'] * -1.25 / cachedTotals['total']).toFixed(1) % 1)).parent().attr('title', String(cachedDay['total']) + ' tutors' );
             }
+        } else {
+            $('#cdow-' + String(i + 1)).css('background-color', '#2196F3').parent().attr('title', '0 tutors' );
         }
     }
-
+    $('[data-toggle="tooltip"]').tooltip({
+   animated : 'fade',
+   placement : 'bottom',
+   container: 'body'
+    });
     $('#cmonth-1').parent().addClass('bold-n-stuff');
 
 }

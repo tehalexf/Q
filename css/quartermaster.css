@@ -15,15 +15,48 @@ h3 {
     background: #2196f3;
     margin: 10px;
     text-align: center;
-    border:5px solid #2196f3; 
+    border: 5px solid #2196f3;
     cursor: pointer;
 }
+
 .test:hover {
-  background: #0A66B1;
+    background: #0A66B1;
 }
 
 .test:active {
-  background: #074A81;
+    background: #074A81;
+}
+
+.bold-n-stuff:hover {
+    background: #E2E2E2 !important;
+}
+
+.bold-n-stuff:active {
+    background: #BFBFBF !important;
+}
+
+.bold-n-stuff {
+    /*Aka current day*/
+    font-weight: bold;
+    /*background: #0A5FA5;*/
+    background-color: white !important;
+    border: 5px solid white !important;
+}
+
+.bold-n-stuff > .sub-box {
+    /*Aka current day*/
+    font-weight: bold;
+    color: #0A5FA5;
+    /*background: #0A5FA5;*/
+    /*border:5px solid white !important; */
+}
+
+.activated {
+    background: #0A66B1;
+}
+
+.bold-n-stuff.activated {
+    background: #E2E2E2 !important;
 }
 
 p {
@@ -164,12 +197,6 @@ nav {
     font-weight: bold;
 }
 
-.bold-n-stuff {
-    font-weight: bold;
-    /*background: #0A5FA5;*/
-    border:5px solid white !important; 
-}
-
 .heatmap-box {
     height: 5px;
     width: 5px;
@@ -199,8 +226,4 @@ table {
 
 td {
     padding: 0;
-}
-
-.activated {
-  background: #0A66B1;
 }
