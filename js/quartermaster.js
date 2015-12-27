@@ -343,7 +343,8 @@ function setup() {
     $('.test').on('click', function() {
         //When the calendar is clicked (specific date)
         console.log('FIRST');
-        if (todayDate != $(this).children('p:eq(1)').html()) {
+        if (todayDate != $(this).children('p:eq(0)').html()) {
+            //CHANGEME -- First date
             $('.btn-currentday').removeClass('btn-currentday');
         } else {
             var d = currentHour();
@@ -426,12 +427,14 @@ function startup(date) {
         placement: 'bottom',
         container: 'body'
     });
-    $('#cmonth-1').parent().addClass('bold-n-stuff');
+    $('#cmonth-0').parent().addClass('bold-n-stuff');
 
 }
 
 $(document).ready(function() {
-    startup('12/1/2015');
+    var d = addDays(new Date(), 1);
+
+    startup((d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear() );
     setup();
-    selectDate(1);
+    selectDate(0);
 });
