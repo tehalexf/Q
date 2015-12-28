@@ -254,7 +254,7 @@ nav {
 }
 
 .hour-tutor {
-    height: auto;
+    font-weight: bold !important;
 }
 
 .btn-currentday {

@@ -81,9 +81,11 @@ function loadCorrectData() {
     if (i > 23)
         tim = ' PM';
 
-    $('#hour-heading').html(fullHour[thisHour]);
+    var numTutors;
+    
     if (dataCache == undefined) {
         //No data for that date
+        $('#hour-heading').html(fullHour[thisHour] + ' - 0 Tutors'); 
         $('#hour-content').html('There are no scheduled events.');
     } else {
         if (filtered) {
@@ -94,7 +96,10 @@ function loadCorrectData() {
                 currentDisplay = dataCache[thisHour];
                 var dummyNode = $('<div/>')
                 var first = false;
+
+                var counter = 0;
                 for (var element in currentDisplay) {
+                    counter++;
                     //TODO: Make this into CSS
                     if (!first) {
                         first = true;
@@ -116,7 +121,7 @@ function loadCorrectData() {
                     }
                     dummyNode.append(tempNode);
                 }
-
+                $('#hour-heading').html(fullHour[thisHour] + ' - ' + counter + ' Tutors'); 
                 $('#hour-content').html(dummyNode.html());
 
             } else {
@@ -137,7 +142,6 @@ function selectDate(datenumber) {
     $('.test:eq(' + datenumber + ')').addClass('activated');
     activeDate = parseInt(datenumber);
 
-    var dayaCache;
     var heatCache;
     if (data.hasOwnProperty(activeDate)) {
         dataCache = data[activeDate];
@@ -148,7 +152,7 @@ function selectDate(datenumber) {
 
     $('.time-btn').attr('data-original-title', '0 tutors').attr('style', '');
     //TODO: Heatmap Loading!
-    $('.hour-tutor').css('background', '#2196F3').html('0 Tuts');
+    $('.hour-tutor').css('background', '#2196F3').html('0 T');
     if (filtered) {
 
     } else {
@@ -163,7 +167,7 @@ function selectDate(datenumber) {
                     }
                     var color = shadeColor2('#2196F3', +(sum * -1.25 / heatCache['total']).toFixed(1) % 1);
                     $('#heatrow-' + String(i)).children(":first").css('background-color', color);
-                    $('#timerow-' + String(i)).children().eq(1).html(sum + ' Tuts').css('background-color', color);
+                    $('#timerow-' + String(i)).children().eq(1).html(sum + ' T').css('background-color', color);
 
                     // $('#timerow-' + String(i)).attr('data-original-title', heatCache['total'] + ' tutors');
                 }
