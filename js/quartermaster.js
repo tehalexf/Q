@@ -82,10 +82,10 @@ function loadCorrectData() {
         tim = ' PM';
 
     var numTutors;
-    
+
     if (dataCache == undefined) {
         //No data for that date
-        $('#hour-heading').html(fullHour[thisHour] + ' - 0 Tutors'); 
+        $('#hour-heading').html(fullHour[thisHour] + ' - 0 Tutors');
         $('#hour-content').html('There are no scheduled events.');
     } else {
         if (filtered) {
@@ -121,7 +121,7 @@ function loadCorrectData() {
                     }
                     dummyNode.append(tempNode);
                 }
-                $('#hour-heading').html(fullHour[thisHour] + ' - ' + counter + ' Tutors'); 
+                $('#hour-heading').html(fullHour[thisHour] + ' - ' + counter + ' Tutors');
                 $('#hour-content').html(dummyNode.html());
 
             } else {
@@ -152,7 +152,8 @@ function selectDate(datenumber) {
 
     $('.time-btn').attr('data-original-title', '0 tutors').attr('style', '');
     //TODO: Heatmap Loading!
-    $('.hour-tutor').css('background', '#2196F3').html('0 T');
+    $('.hour-tutor').css('background', '#2196F3').html();
+    // $('.hour-tutor').css('background', '#2196F3').html('0 T');
     if (filtered) {
 
     } else {
@@ -167,7 +168,7 @@ function selectDate(datenumber) {
                     }
                     var color = shadeColor2('#2196F3', +(sum * -1.25 / heatCache['total']).toFixed(1) % 1);
                     $('#heatrow-' + String(i)).children(":first").css('background-color', color);
-                    $('#timerow-' + String(i)).children().eq(1).html(sum + ' T').css('background-color', color);
+                    $('#timerow-' + String(i)).children().eq(1).html(sum + ' Tutors').css('background-color', color);
 
                     // $('#timerow-' + String(i)).attr('data-original-title', heatCache['total'] + ' tutors');
                 }
