@@ -8,7 +8,7 @@ var data = {
     //format is day# : hour# : data
     1: {
         16: {
-            '20': ['Me'],
+            '20': ['Me <div style="display: inline-block;" > hi </div>'],
             '30': ['You']
         }
     }
@@ -136,14 +136,47 @@ function selectDate(datenumber) {
     $('.test').removeClass('activated');
     $('.test:eq(' + datenumber + ')').addClass('activated');
     activeDate = parseInt(datenumber);
-    console.log('BP2');
-    console.log(activeDate)
-    console.log(todayDate)
+
+    var dayaCache;
+    var heatCache;
+    if (data.hasOwnProperty(activeDate)) {
+        dataCache = data[activeDate];
+        heatCache = heatMapData[activeDate];
+    } else {
+        dataCache = undefined;
+    }
+
+    $('.time-btn').attr('data-original-title', '0 tutors').attr('style', '');
+    //TODO: Heatmap Loading!
+    $('.hour-tutor').css('background', '#2196F3').html('0 Tuts');
+    if (filtered) {
+
+    } else {
+        $('.heatmap-box').css('background', '#FFFFFF');
+
+        if (dataCache) {
+            for (var i = 0; i < 48; i++) {
+                if (String(i) in dataCache) {
+                    var sum = 0;
+                    for (var key in dataCache[String(i)]) {
+                        sum += dataCache[String(i)][key].length;
+                    }
+                    var color = shadeColor2('#2196F3', +(sum * -1.25 / heatCache['total']).toFixed(1) % 1);
+                    $('#heatrow-' + String(i)).children(":first").css('background-color', color);
+                    $('#timerow-' + String(i)).children().eq(1).html(sum + ' Tuts').css('background-color', color);
+
+                    // $('#timerow-' + String(i)).attr('data-original-title', heatCache['total'] + ' tutors');
+                }
+
+            }
+
+        }
+    }
+
     if (activeDate == 0) {
         console.log('BP3');
         var hour = currentHour();
         console.log('correct');
-
         ignoreChange = true;
         $('.myelement').slick('slickGoTo', hour, false);
         ignoreChange = true;
@@ -151,7 +184,7 @@ function selectDate(datenumber) {
         $('.selected-box').removeClass('selected-box');
         $('#heatrow-' + String(hour)).addClass('selected-box');
         $('.time-btn').removeClass('active');
-        $('#timerow-' + String(hour)).addClass('active');
+        $('#timerow-' + String(hour)).addClass('active').addClass('btn-currentday');
         thisHour = hour;
         console.log('TESTME');
     } else {
@@ -163,38 +196,6 @@ function selectDate(datenumber) {
         $('.btn-currentday').removeClass('btn-currentday');
         $('#timerow-16').addClass('active');
         thisHour = 16;
-    }
-    var dayaCache;
-    var heatCache;
-    if (data.hasOwnProperty(activeDate)) {
-        dataCache = data[activeDate];
-        heatCache = heatMapData[activeDate];
-    } else {
-        dataCache = undefined;
-    }
-
-    //TODO: Heatmap Loading!
-    if (filtered) {
-
-    } else
-    $('.heatmap-box').css('background-color', '#FFFFFF');
-    if (dataCache) {
-        for (var i = 0; i < 48; i++) {
-
-            console.log(i)
-
-            if (String(i) in dataCache) {
-                var sum = 0;
-
-                for (var key in dataCache[String(i)]) {
-                    sum += dataCache[String(i)][key].length;
-
-                    $('#heatrow-' + String(i)).children(":first").css('background-color', shadeColor2('#2196F3', +(sum * -1.25 / heatCache['total']).toFixed(1) % 1));
-                }
-            }
-
-        }
-
     }
 
     loadCorrectData();
@@ -263,15 +264,22 @@ function setup() {
 
         fullHour[i] = String(use) + String(sub) + longtim;
 
-        var temp = $("<div class='row row-date'><button time-index='" + String(i) + "' id='timerow-" + String(i) + "' class='time-btn btn btn-default btn-block '>" + String(use) + String(sub) + tim + "</button></div>");
+        var temp = $("<div class='row row-date'><button title='herp' data-toggle='tooltip' time-index='" + String(i) + "' id='timerow-" + String(i) + "' class='time-btn btn btn-default btn-block '><div>" + String(use) + String(sub) + tim + "</div><div class='hour-tutor' style='background:#2196F3;'></div></button></div>");
         var temp2 = $("<td title='" + fullHour[i] + "' data-heatid='" + String(i) + "' id='heatrow-" + String(i) + "' class='invis-table'><div class='heatmap-box'></div></td>");
 
         dummy.append(temp);
         dummy2.append(temp2);
     }
 
-    $('#testme').html(dummy.html()); -
+    $('#testme').html(dummy.html());
     $('#top-heatmap').html(dummy2.html());
+
+    // $('.time-btn').tooltip({
+    //     animated: 'fade',
+    //     placement: 'right',
+    //     container: 'body',
+    //     trigger: 'hover'
+    // });
 
     $('.time-btn').on('click', function() {
         //On click of a timke button
@@ -437,7 +445,7 @@ function startup(date) {
 $(document).ready(function() {
     var d = addDays(new Date(), 1);
 
-    startup((d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear() );
+    startup((d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear());
     setup();
     selectDate(0);
 });

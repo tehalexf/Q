@@ -197,16 +197,6 @@ nav {
     margin: 0 auto;
 }
 
-.time-btn {
-    height: 60px;
-    width: 60px;
-    border: none;
-    margin: 0 auto;
-    padding: 0px;
-    outline: none !important;
-    color: black;
-}
-
 #testme {
     width: 70px;
 }
@@ -242,8 +232,51 @@ nav {
     margin-left: -9%;
 }
 
+.time-btn {
+    height: 60px;
+    width: 60px;
+    border: none;
+    margin: 0 auto;
+    padding: 0px;
+    outline: none !important;
+    color: white;
+    background: #2196F3;
+}
+
+.time-btn:hover {
+    background: #0A66B1 !important;
+    color: white;
+}
+
+.time-btn:active {
+    background: #074a81 !important;
+    color: white !important;
+}
+
+.hour-tutor {
+    height: auto;
+}
+
 .btn-currentday {
     font-weight: bold;
+    border: 3px solid white !important;
+}
+
+.btn-currentday:hover {
+    color: white;
+    background: #0A66B1 !important;
+}
+
+.btn-currentday.active {
+    font-weight: bold;
+    color: white;
+    background: #2196F3;
+    border: 3px solid white !important;
+}
+
+.time-btn.active {
+    color: white !important;
+    background: #0A66B1 !important;
 }
 
 .heatmap-box {
