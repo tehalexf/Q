@@ -4,6 +4,9 @@ var todayDate = -1;
 var thisHour = -1;
 var fullHour = {};
 var ignoreChange = false;
+var lastDate = -1;
+var thisDateIndex = 0;
+var rightNow = -1;
 var data = {
     //format is day# : hour# : data
     1: {
@@ -125,7 +128,7 @@ function loadCorrectData() {
         if (filtered) {
             //todo
         } else {
-            console.log(thisHour);
+
             if (thisHour in dataCache) {
                 currentDisplay = dataCache[thisHour];
                 var dummyNode = $('<div/>')
@@ -142,15 +145,13 @@ function loadCorrectData() {
                         var tempNode = $('<div style="font-weight: bold; margin-top:10px;">ECS ' + String(element) + ' Tutors:</div>')
                     }
 
-                    console.log(tempNode);
                     currentList = currentDisplay[element];
                     var tempLength = currentList.length;
 
                     for (var i = 0; i < tempLength; i++) {
                         var tempContent = $('<div style="font-weight: normal;"> ' + currentList[i] + ' </div>');
-                        console.log(tempNode);
+
                         tempNode = tempNode.add(tempContent);
-                        console.log(tempNode);
 
                     }
                     dummyNode.append(tempNode);
@@ -166,12 +167,12 @@ function loadCorrectData() {
 
         //has data for that date
     }
-    console.log('DONEZOS');
+
 }
 
 function selectDate(datenumber) {
     //Calendar is clicked or changed. Loading stuff should happen here.
-    console.log("selectDate is called on", datenumber);
+
     $('.test').removeClass('activated');
     $('.test:eq(' + datenumber + ')').addClass('activated');
     activeDate = parseInt(datenumber);
@@ -200,9 +201,11 @@ function selectDate(datenumber) {
                     for (var key in dataCache[String(i)]) {
                         sum += dataCache[String(i)][key].length;
                     }
-                    var color = shadeColor2('#2196F3', +(sum * -1.25 / heatCache['total']).toFixed(1) % 1);
-                    $('#heatrow-' + String(i)).children(":first").css('background-color', color);
-                    $('#timerow-' + String(i)).children().eq(1).html(sum + ' Tutors').css('background-color', color);
+                    if (heatCache != undefined && heatCache['total'] != undefined) {
+                        var color = shadeColor2('#2196F3', +(sum * -1.25 / heatCache['total']).toFixed(1) % 1);
+                        $('#heatrow-' + String(i)).children(":first").css('background-color', color);
+                        $('#timerow-' + String(i)).children().eq(1).html(sum + ' Tutors').css('background-color', color);
+                    }
 
                     // $('#timerow-' + String(i)).attr('data-original-title', heatCache['total'] + ' tutors');
                 }
@@ -212,22 +215,22 @@ function selectDate(datenumber) {
         }
     }
 
-    if (activeDate == 0) {
-        console.log('BP3');
+    if (activeDate == thisDateIndex) {
+
         var hour = currentHour();
-        console.log('correct');
+
         ignoreChange = true;
         $('.myelement').slick('slickGoTo', hour, false);
         ignoreChange = false;
-        console.log('correct2');
+
         $('.selected-box').removeClass('selected-box');
         $('#heatrow-' + String(hour)).addClass('selected-box');
         $('.time-btn').removeClass('active');
         $('#timerow-' + String(hour)).addClass('active').addClass('btn-currentday');
         thisHour = hour;
-        console.log('TESTME');
+
     } else {
-        console.log('BP4');
+
         $('.myelement').slick('slickGoTo', 16, false);
         $('.selected-box').removeClass('selected-box');
         $('#heatrow-' + String(16)).addClass('selected-box');
@@ -261,7 +264,7 @@ function setup() {
     $('.Herp').removeClass('hidden');
 
     // $('.Herp').on('beforeChange', function(event, slick, previousSlide, currentSlide) {
-    //     console.log(previousSlide, currentSlide);
+
     // });
 
     if ($(window).width() < 767) {
@@ -326,27 +329,26 @@ function setup() {
     });
 
     $('.myelement').on('afterChange', function(event, slick, currentSlide) {
-        console.log('AFTER CHANGED');
+
         if (activeDate == 0 && currentSlide == 0) {
             $('.myelement').slick('slickSetOption', 'infinite', false, true);
-            console.log('set uninfinite)');
+
         } else if (activeDate == 0 && currentSlide >= 6) {
             $('.myelement').slick('slickSetOption', 'infinite', true, true);
-            console.log('set infinite)');
+
         }
         if (activeDate == 13 && currentSlide == 42) {
             $('.myelement').slick('slickSetOption', 'infinite', false, true);
-            console.log('set uninfinite)');
+
         } else if (activeDate == 13 && currentSlide <= 36) {
             $('.myelement').slick('slickSetOption', 'infinite', true, true);
-            console.log('set infinite)');
+
         }
 
     });
 
     $('.myelement').on('beforeChange', function(event, slick, previousSlide, currentSlide) {
-        console.log("AAAAAAAAAAAAAAAAAAAAAAA");
-        console.log(ignoreChange);
+
         if (!ignoreChange) {
             if (previousSlide == 0 && currentSlide == 42 && started == false) {
                 activeDate = parseInt(activeDate) - 1;
@@ -368,7 +370,6 @@ function setup() {
             changeTime($('#timerow-' + parseInt(currentHour())));
             ignoreChange = false;
 
-            
         });
     });
 
@@ -400,7 +401,7 @@ function setup() {
 
     $('.test').on('click', function() {
         //When the calendar is clicked (specific date)
-        console.log('FIRST');
+
         if (todayDate != $(this).children('p:eq(0)').html()) {
             //CHANGEME -- First date
             $('.btn-currentday').removeClass('btn-currentday');
@@ -408,13 +409,13 @@ function setup() {
             var d = currentHour();
             $('#timerow-' + String(d)).addClass('btn-currentday');
         }
-        console.log('BP');
+
         selectDate($(this).parent().attr('data-slick-index'));
-        console.log('HAPPENS ONCE');
+
     });
 
     $('.invis-table').on('click', function() {
-        console.log(parseInt($(this).attr('data-heatid')));
+
         changeTime($('#timerow-' + parseInt($(this).attr('data-heatid'))));
         // $('.myelement').slick('slickGoTo', parseInt($(this).attr('data-heatid')), false);
         // if (todayDate != $(this).children('p:eq(1)').html()) {
@@ -462,7 +463,6 @@ function startup(date) {
 
     todayDate = addDays(thisDate, -1).getDate();
 
-    console.log('THIS DATE IS ' + todayDate)
     for (var i = -1; i < 13; i++) {
         var tempDate = addDays(thisDate, i)
         $('#cmonth-' + String(i + 1)).html(monthNames[tempDate.getMonth()]);
@@ -496,4 +496,28 @@ $(document).ready(function() {
     startup((d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear());
     setup();
     selectDate(0);
+
+    setInterval(function() {
+        var rightNow = new Date().getDate();
+        if (lastDate == -1) {
+            lastDate = new Date().getDate();
+            rightNow = currentHour();
+        } else {
+            if (lastDate != rightNow) {
+                lastDate = rightNow;
+                todayDate = rightNow;
+                thisDateIndex++;
+                selectDate(thisDateIndex);
+                $('.bold-n-stuff').removeClass('.bold-n-stuff');
+                $('.cmonth-' + thisDateIndex).parent().addClass('.bold-n-stuff');
+            }
+        }
+
+        if (activeDate == thisDateIndex) {
+            $('.btn-currentday').removeClass('btn-currentday');
+            $('#timerow-' + String(currentHour())).addClass('btn-currentday');
+        }
+
+    }, 60000);
+    // 60000
 });
