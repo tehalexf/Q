@@ -218,7 +218,7 @@ function selectDate(datenumber) {
         console.log('correct');
         ignoreChange = true;
         $('.myelement').slick('slickGoTo', hour, false);
-        ignoreChange = true;
+        ignoreChange = false;
         console.log('correct2');
         $('.selected-box').removeClass('selected-box');
         $('#heatrow-' + String(hour)).addClass('selected-box');
@@ -345,6 +345,8 @@ function setup() {
     });
 
     $('.myelement').on('beforeChange', function(event, slick, previousSlide, currentSlide) {
+        console.log("AAAAAAAAAAAAAAAAAAAAAAA");
+        console.log(ignoreChange);
         if (!ignoreChange) {
             if (previousSlide == 0 && currentSlide == 42 && started == false) {
                 activeDate = parseInt(activeDate) - 1;
