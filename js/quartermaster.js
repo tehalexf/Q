@@ -10,6 +10,40 @@ var data = {
         16: {
             '20': ['Me <div style="display: inline-block;" > hi </div>'],
             '30': ['You']
+        },
+        17: {
+            '20': ['Me <div style="display: inline-block;" > hi </div>'],
+            '30': ['You']
+        }
+    },
+    2: {
+        16: {
+            '20': ['Me <div style="display: inline-block;" > hi </div>'],
+            '30': ['You']
+        },
+        17: {
+            '20': ['Me <div style="display: inline-block;" > hi </div>'],
+            '30': ['You']
+        }
+    },
+    3: {
+        16: {
+            '20': ['Me <div style="display: inline-block;" > hi </div>'],
+            '30': ['You']
+        },
+        17: {
+            '20': ['Me <div style="display: inline-block;" > hi </div>'],
+            '30': ['You']
+        }
+    },
+    4: {
+        16: {
+            '20': ['Me <div style="display: inline-block;" > hi </div>'],
+            '30': ['You']
+        },
+        17: {
+            '20': ['Me <div style="display: inline-block;" > hi </div>'],
+            '30': ['You']
         }
     }
 };
@@ -152,7 +186,7 @@ function selectDate(datenumber) {
 
     $('.time-btn').attr('data-original-title', '0 tutors').attr('style', '');
     //TODO: Heatmap Loading!
-    $('.hour-tutor').css('background', '#2196F3').html();
+    $('.hour-tutor').css('background', '#2196F3').html('');
     // $('.hour-tutor').css('background', '#2196F3').html('0 T');
     if (filtered) {
 

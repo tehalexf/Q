@@ -147,10 +147,10 @@ ul {
     border-radius: 24px;
     border-color: none;
     background-color: #0d47a1;
+    outline: 0 !important;
 }
 
 .btn-round:hover,
-.btn-round:active,
 .btn-round:focus,
 .open > .dropdown-toggle.btn-round,
 .open > .dropdown-toggle.btn-round:active,
@@ -159,6 +159,10 @@ ul {
     background-color: #082c63 !important;
     color: white;
 }
+.btn-round:active {
+  background-color: #0d47a1;
+}
+
 
 #filterbtns {
     padding-top: 10px;
