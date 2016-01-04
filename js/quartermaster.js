@@ -362,7 +362,14 @@ function setup() {
 
             }
         }
+        $('.now-btn').on('click', function() {
+            ignoreChange = true;
+            selectDate(0);
+            changeTime($('#timerow-' + parseInt(currentHour())));
+            ignoreChange = false;
 
+            
+        });
     });
 
     $('#testme').slick({
