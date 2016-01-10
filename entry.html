@@ -14,6 +14,7 @@
     <script type="text/javascript" src="slick.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="js/date.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.3.7.js"></script>
     <script src="js/entry.js"></script>
     <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
     <!-- Inline CSS based on choices in "Settings" tab -->
@@ -95,11 +96,11 @@
                     <tbody>
                         <tr>
                             <td>+f 10:30am - 11:00am</td>
-                            <td>Tutor on Friday from 10:30am to 11:00 am. Minutes must be 00 or 30.</td>
+                            <td>Tutor on Friday (f) from 10:30am to 11:00 am. Minutes must be 00 or 30.</td>
                         </tr>
                         <tr>
                             <td>+mwh 10:30am - 12:00pm</td>
-                            <td>Tutor on Monday, Wednesday, Thursday from 10:30am to 12:00pm.</td>
+                            <td>Tutor on Monday (m), Wednesday (w), Thursday (h) from 10:30am to 12:00pm.</td>
                         </tr>
                         <tr>
                             <td>-su 9:30am - 10:30am</td>
@@ -126,17 +127,16 @@
                             CS Tutoring Password
                             <span class="asteriskField">*</span>
                         </label>
-                        <input class="form-control" id="subject" name="subject" type="text" />
+                        <input class="form-control" id="passw" name="subject" type="password" />
                     </div>
-                    <div class="form-group">
-                        <div>
-                            <button class="btn btn-primary " name="submit" type="submit">
-                                Submit
-                            </button>
-                            <button class="btn btn-primary " name="submit" type="submit">
-                                Load
-                            </button>
-                        </div>
+                    <div id="response"></div>
+                    <div>
+                        <button type="button" class="btn btn-primary " id="sub" onclick="subm(); return false;">
+                            Submit
+                        </button>
+                        <button type="button" class="btn btn-primary " id="load" onclick="loadme(); return false;">
+                            Load
+                        </button>
                     </div>
                     <div class="form-group">
                         <label class="control-label requiredField" for="subject">

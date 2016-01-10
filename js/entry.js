@@ -2,7 +2,7 @@
 var pat = /^[\s\n]*([+-]([mtwhfsuMTWHFSU]+|(0[1-9]|1[0-2])\/(0[1-9]|1[0-9])\/20(0[1-9]|1[0-9]))[\s\n]*([1-9]|1[0-2]):([30]0)\s*[apAP][mM]\s*-\s*([1-9]|1[0-2]):([30]0)\s*[apAP][mM][\s\n]*)*$/
     // var pat = /^[\s\n]*([+-](([mtwhfsuMTWHFSU]+)|((0[1-9]|1[0-2])\/(0[1-9]|1[0-9])\/20(0[1-9]|1[0-9])))[\s\n]*(((0[1-9]|1[0-2]):([30]0)\s*[apAP][mM])-((0[1-9]|1[0-2]):([30]0)(\s*[apAP][mM])))[\s\n]*)*$/
 var arr = ['u', 'm', 't', 'w', 'h', 'f', 's']
-
+var socket = io.connect('http://d.rhocode.com:5010'); //SocketIO Connection
 // var end = Date.parse('1/12/2016')
 var end = Date.parse('3/15/2016')
 var dateSet = new Set();
@@ -204,7 +204,6 @@ function myCallback() {
 
             }
         }
-        console.log(htmlList)
 
         var tableHead = "<table style='width:100%; '> <thead> <tr>   <th>Day</th> <th>Tutoring Times</th> </tr> </thead> <tbody> "
         var tableEnd = " </tbody> </table>"
@@ -219,6 +218,85 @@ function myCallback() {
     }
 }
 
+function mysql_real_escape_string(str) {
+    return str.replace(/[\0\x08\x09\x1a\n\r"'\\\%]/g, function(char) {
+        switch (char) {
+            case "\0":
+                return "\\0";
+            case "\x08":
+                return "\\b";
+            case "\x09":
+                return "\\t";
+            case "\x1a":
+                return "\\z";
+            case "\n":
+                return "\\n";
+            case "\r":
+                return "\\r";
+            case "\"":
+            case "'":
+            case "\\":
+            case "%":
+                return "\\" + char; // prepends a backslash to backslash, percent,
+                // and double/single quotes
+        }
+    });
+}
+
+socket.on('calendar_status', function(data) {
+    $('#response').html(data['message'])
+});
+
+socket.on('calendar_data', function(data) {
+    $('#textarea').val(data['data'])
+});
+
+function subm() {
+    $('#email').parent().removeClass('has-error');
+    $('#passw').parent().removeClass('has-error');
+    var error = 0;
+    if ($('#email').val().replace(" ", "") == '') {
+        $('#email').parent().addClass('has-error');
+        error++;
+    }
+    if ($('#passw').val().replace(" ", "") == '') {
+        $('#passw').parent().addClass('has-error');
+        error++;
+    }
+    if (!pat.test($('#textarea').val()))
+        error++;
+    if (error)
+        return
+
+    socket.emit('calendar_entry', {
+        'email': mysql_real_escape_string($('#email').val()),
+        'passw': mysql_real_escape_string($('#passw').val()),
+        'data': $('#textarea').val().substring(0, 4000)
+    })
+}
+
+function loadme() {
+    $('#email').parent().removeClass('has-error');
+    $('#passw').parent().removeClass('has-error');
+    var error = 0;
+    if ($('#email').val().replace(" ", "") == '') {
+        $('#email').parent().addClass('has-error');
+        error++;
+    }
+    if ($('#passw').val().replace(" ", "") == '') {
+        $('#passw').parent().addClass('has-error');
+        error++;
+    }
+
+    if (error)
+        return
+
+    socket.emit('calendar_fetch', {
+        'email': mysql_real_escape_string($('#email').val()),
+        'passw': mysql_real_escape_string($('#passw').val())
+    })
+}
+
 $(document).ready(function() {
 
     $('#textarea').bind('input propertychange', function() {
@@ -229,31 +307,6 @@ $(document).ready(function() {
         } else {
             t = setTimeout(myCallback, 1000);
         }
-
-        // 
-        // if (pat.test($('#textarea').val())) {
-
-        //     
-
-        //     $(this).parent().removeClass('has-error');
-
-        // } else {
-        //     
-        //     
-        //     
-        //     
-        //     
-        //     
-        //     
-        //     
-
-        //     if (pat.test($('#textarea').val()) == true)
-        //         
-        //     
-        //     $(this).parent().addClass('has-error');
-        // }
-        // // 
-
     });
 
     var myString = "+mtw +mtHw";
