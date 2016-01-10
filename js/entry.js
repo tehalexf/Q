@@ -248,7 +248,8 @@ socket.on('calendar_status', function(data) {
 });
 
 socket.on('calendar_data', function(data) {
-    $('#textarea').val(data['data'])
+    $('#textarea').val(data['data']);
+    myCallback();
 });
 
 function subm() {
