@@ -71,9 +71,11 @@ function myCallback() {
 
                     var timeIter = iter.clone().at(result[3]);
                     var timeStop1 = iter.clone().at(result[6]);
+                    var timeStop3 = iter.clone().at(result[6]).add(-30).minute();
+
                     var timeStop2 = iter.clone().add(1).day().at(result[6]);
 
-                    for (; !timeIter.equals(timeStop1) && !timeIter.equals(timeStop2); timeIter = timeIter.add(30).minute()) {
+                    for (; !timeIter.equals(timeStop1) && !timeIter.equals(timeStop2) && !timeIter.equals(timeStop3); timeIter = timeIter.add(30).minute()) {
 
                         if (!(iter in dictSet)) {
                             dictSet[iter.clone()] = {};
@@ -103,7 +105,9 @@ function myCallback() {
             var timeStop1 = iter.clone().at(result[8]);
             var timeStop2 = iter.clone().add(1).day().at(result[8]);
 
-            for (; !timeIter.equals(timeStop1) && !timeIter.equals(timeStop2); timeIter = timeIter.add(30).minute()) {
+            var timeStop3 = iter.clone().at(result[8]).add(-30).minute();
+
+            for (; !timeIter.equals(timeStop1) && !timeIter.equals(timeStop2) && !timeIter.equals(timeStop3); timeIter = timeIter.add(30).minute()) {
 
                 if (!(iter in dictSet)) {
                     dictSet[iter.clone()] = {};
@@ -148,10 +152,11 @@ function myCallback() {
                     var timeIter = iter.clone().at(result[3]);
                     var timeStop1 = iter.clone().at(result[6]).add(30).minute();
                     var timeStop2 = iter.clone().add(1).day().at(result[6]).add(30).minute();
+                    var timeStop3 = iter.clone().at(result[6]).add(-30).minute();
                     if (timeIter.equals(timeStop1))
                         timeStop1 = timeStop1.add(30).minute()
 
-                    for (; !timeIter.equals(timeStop1) && !timeIter.equals(timeStop2); timeIter = timeIter.add(30).minute()) {
+                    for (; !timeIter.equals(timeStop1) && !timeIter.equals(timeStop2) && !timeIter.equals(timeStop3); timeIter = timeIter.add(30).minute()) {
 
                         if (iter in dictSet && timeIter in dictSet[iter]) {
                             delete dictSet[iter][timeIter];
@@ -180,10 +185,11 @@ function myCallback() {
             var timeIter = iter.clone().at(result[5]);
             var timeStop1 = iter.clone().at(result[8]);
             var timeStop2 = iter.clone().add(1).day().at(result[8]);
+            var timeStop3 = iter.clone().at(result[8]).add(-30).minute();
             if (timeIter.equals(timeStop1))
                 timeStop1 = timeStop1.add(30).minute()
 
-            for (; !timeIter.equals(timeStop1) && !timeIter.equals(timeStop2); timeIter = timeIter.add(30).minute()) {
+            for (; !timeIter.equals(timeStop1) && !timeIter.equals(timeStop2) && !timeIter.equals(timeStop3); timeIter = timeIter.add(30).minute()) {
 
                 if (iter in dictSet && timeIter in dictSet[iter]) {
                     delete dictSet[iter][timeIter];
