@@ -300,7 +300,9 @@ socket.on('calendar_data', function(data) {
 function subm() {
     $('#email').parent().removeClass('has-error');
     $('#passw').parent().removeClass('has-error');
+    $('#subjs').parent().removeClass('has-error');
     var error = 0;
+
     if ($('#email').val().replace(" ", "") == '') {
         $('#email').parent().addClass('has-error');
         error++;
@@ -317,9 +319,12 @@ function subm() {
 
     if (!pat.test($('#textarea').val()))
         error++;
-    if (error)
-        return
 
+    if (error > 0) {
+        console.log('Dur')
+        return
+    }
+    myCallback();
     socket.emit('calendar_entry', {
         'email': mysql_real_escape_string($('#email').val()),
         'passw': mysql_real_escape_string($('#passw').val()),
