@@ -149,10 +149,10 @@ function myCallback() {
                     var timeIter = iter.clone().at(result[3]);
                     var timeStop1 = iter.clone().at(result[6]).add(30).minute();
                     var timeStop2 = iter.clone().add(1).day().at(result[6]).add(30).minute();
-                    var timeStop3 = iter.clone().at(result[6]).add(-30).minute();
+                    var timeStop3 = iter.clone().at(result[6]);
                     if (timeIter.equals(timeStop1))
                         timeStop1 = timeStop1.add(30).minute()
-
+                    console.log(timeIter, timeStop1, timeStop2, timeStop3)
                     for (; !timeIter.equals(timeStop1) && !timeIter.equals(timeStop2) && !timeIter.equals(timeStop3); timeIter = timeIter.add(30).minute()) {
 
                         if (iter in dictSet && timeIter in dictSet[iter]) {
@@ -177,12 +177,14 @@ function myCallback() {
         var result;
         while ((result = reg.exec($('#textarea').val())) !== null) {
             // dictSet[Date.parse(result[1])] = true;
+            console.log(result)
 
             var iter = Date.parse(result[1]);
+
             var timeIter = iter.clone().at(result[5]);
-            var timeStop1 = iter.clone().at(result[8]);
+            var timeStop1 = iter.clone().at(result[8]).add(30).minute();
             var timeStop2 = iter.clone().add(1).day().at(result[8]);
-            var timeStop3 = iter.clone().at(result[8]).add(-30).minute();
+            var timeStop3 = iter.clone().at(result[8]);
             if (timeIter.equals(timeStop1))
                 timeStop1 = timeStop1.add(30).minute()
 
