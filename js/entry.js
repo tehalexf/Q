@@ -37,15 +37,16 @@ var working = '';
 function myCallback() {
     var dictSet = {};
     var dictSet2 = {};
-
+    console.log("AAAA")
     if (pat.test($('#textarea').val())) {
-
+        console.log("BBBB")
         $('#textarea').parent().removeClass('has-error');
         reg = new RegExp(/\+([mtwrfsuMTWRFSU]+)[\s\n]*((([1-9]|1[0-2]):([30]0)\s*[apAP][mM])\s*-\s*(([1-9]|1[0-2]):([30]0)(\s*[apAP][mM])))\s*(((0[1-9]|[1-3][0-9])\/(0[1-9]|[1-3][0-9])\/(20[0-9][0-9]))\s*(\-\s*((0[1-9]|[1-3][0-9])\/(0[1-9]|[1-3][0-9])\/(20[0-9][0-9])))?)?[\s\n]*/g);
 
         var result;
         tempset = [];
         while ((result = reg.exec($('#textarea').val())) !== null) {
+            console.log(result)
             var days = result[1].toLowerCase();
 
             var iter = Date.parse('t');
@@ -126,7 +127,6 @@ function myCallback() {
         while ((result = reg.exec($('#textarea').val())) !== null) {
             var days = result[1].toLowerCase();
 
-            return
             var iter = Date.parse('t');
             var thisEnd = end;
 
@@ -139,7 +139,6 @@ function myCallback() {
                 thisEnd = thisEnd.compareTo(dayTwo) > 0 ? dayTwo : thisEnd;
             }
             if (iter.compareTo(thisEnd) > 0) {
-
                 continue;
             }
 
