@@ -94,11 +94,11 @@ function myCallback() {
             }
         }
 
-        reg = new RegExp(/\+((0[1-9]|1[0-2])\/(0[1-9]|1[0-9])\/20(0[1-9]|1[0-9]))[\s\n]*(([1-9]|1[0-2]):([30]0)\s*[apAP][mM])\s*-\s*(([1-9]|1[0-2]):([30]0)(\s*[apAP][mM]))[\s\n]*/g);
+        reg = new RegExp(/\+((0[1-9]|1[0-2])\/(0[1-9]|[1-3][0-9])\/20(0[1-9]|1[0-9]))[\s\n]*(([1-9]|1[0-2]):([30]0)\s*[apAP][mM])\s*-\s*(([1-9]|1[0-2]):([30]0)(\s*[apAP][mM]))[\s\n]*/g);
         var result;
         while ((result = reg.exec($('#textarea').val())) !== null) {
             // dictSet[Date.parse(result[1])] = true;
-
+            console.log(result)
             var iter = Date.parse(result[1]);
             var timeIter = iter.clone().at(result[5]);
             var timeStop1 = iter.clone().at(result[8]);
@@ -173,7 +173,7 @@ function myCallback() {
             }
         }
 
-        reg = new RegExp(/\-((0[1-9]|1[0-2])\/(0[1-9]|1[0-9])\/20(0[1-9]|1[0-9]))[\s\n]*(([1-9]|1[0-2]):([30]0)\s*[apAP][mM])\s*-\s*(([1-9]|1[0-2]):([30]0)(\s*[apAP][mM]))[\s\n]*/g);
+        reg = new RegExp(/\-((0[1-9]|1[0-2])\/(0[1-9]|[1-3][0-9])\/20(0[1-9]|1[0-9]))[\s\n]*(([1-9]|1[0-2]):([30]0)\s*[apAP][mM])\s*-\s*(([1-9]|1[0-2]):([30]0)(\s*[apAP][mM]))[\s\n]*/g);
         var result;
         while ((result = reg.exec($('#textarea').val())) !== null) {
             // dictSet[Date.parse(result[1])] = true;
