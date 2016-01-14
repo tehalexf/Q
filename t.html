@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Q | UCD Tutoring Club</title>
+    <meta charset="UTF-8">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="slick.css" rel="stylesheet">
+    <link href="slick-theme.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/foundation.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link href="css/quartermaster.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.3.7.js"></script>
+    <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+</head>
+
+<body>
+    <p style="line-height: 18px; font-size: 18px;  font-family: times;">
+        Click "<i>Load samples</i>" to view and edit more JS samples.
+        <br>
+        <br> Labyrinth generated with JavaScript:
+        <br>
+        <br>
+        <script>
+        var socket = io.connect('http://d.rhocode.com:5010'); //SocketIO Connection
+
+        socket.on('current_cal', function(data) {
+            console.log(data);
+        });
+
+
+        $(document).ready(function() {
+            socket.emit('main_cal');
+        });
+        </script>
+    </p>
+</body>
+
+</html>

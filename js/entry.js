@@ -7,7 +7,7 @@ var socket = io.connect('http://d.rhocode.com:5010'); //SocketIO Connection
 var end = Date.parse('3/15/2016')
 var dateSet = new Set();
 var lastDateSet;
-
+var socket = io.connect('http://d.rhocode.com:5010'); //SocketIO Connection
 function ArrNoDupe(a) {
     var temp = {};
 

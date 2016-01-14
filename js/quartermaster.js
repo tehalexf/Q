@@ -7,6 +7,8 @@ var ignoreChange = false;
 var lastDate = -1;
 var thisDateIndex = 0;
 var rightNow = -1;
+var socket = io.connect('http://d.rhocode.com:5010'); //SocketIO Connection
+var whatsToday = '01/01/2016';
 var data = {
     //format is day# : hour# : data
     1: {
@@ -50,6 +52,8 @@ var data = {
         }
     }
 };
+
+var dataHeatMap = {};
 
 var heatMapData = {
     0: {
@@ -131,11 +135,14 @@ function loadCorrectData() {
 
             if (thisHour in dataCache) {
                 currentDisplay = dataCache[thisHour];
+
                 var dummyNode = $('<div/>')
                 var first = false;
 
                 var counter = 0;
+                var setCounter = new Set();
                 for (var element in currentDisplay) {
+
                     counter++;
                     //TODO: Make this into CSS
                     if (!first) {
@@ -149,14 +156,15 @@ function loadCorrectData() {
                     var tempLength = currentList.length;
 
                     for (var i = 0; i < tempLength; i++) {
+
                         var tempContent = $('<div style="font-weight: normal;"> ' + currentList[i] + ' </div>');
-
                         tempNode = tempNode.add(tempContent);
-
+                        setCounter.add(currentList[i])
                     }
+
                     dummyNode.append(tempNode);
                 }
-                $('#hour-heading').html(fullHour[thisHour] + ' - ' + counter + ' Tutors');
+                $('#hour-heading').html(fullHour[thisHour] + ' - ' + setCounter.size + ' Tutors');
                 $('#hour-content').html(dummyNode.html());
 
             } else {
@@ -178,9 +186,10 @@ function selectDate(datenumber) {
     activeDate = parseInt(datenumber);
 
     var heatCache;
+
     if (data.hasOwnProperty(activeDate)) {
         dataCache = data[activeDate];
-        heatCache = heatMapData[activeDate];
+        heatCache = dataHeatMap[activeDate];
     } else {
         dataCache = undefined;
     }
@@ -197,14 +206,26 @@ function selectDate(datenumber) {
         if (dataCache) {
             for (var i = 0; i < 48; i++) {
                 if (String(i) in dataCache) {
-                    var sum = 0;
+
+                    var todaySet = new Set();
+
                     for (var key in dataCache[String(i)]) {
-                        sum += dataCache[String(i)][key].length;
+
+                        // for (var me in ) {
+                        var mylength = dataCache[String(i)][key].length;
+
+                        for (var j = 0; j < mylength; j++) {
+                            todaySet.add(dataCache[String(i)][key][j])
+
+                        }
+
                     }
+
                     if (heatCache != undefined && heatCache['total'] != undefined) {
-                        var color = shadeColor2('#2196F3', +(sum * -1.25 / heatCache['total']).toFixed(1) % 1);
+
+                        var color = shadeColor2('#2196F3', +(todaySet.size * -1.25 / heatCache['total']).toFixed(1) % 1);
                         $('#heatrow-' + String(i)).children(":first").css('background-color', color);
-                        $('#timerow-' + String(i)).children().eq(1).html(sum + ' Tutors').css('background-color', color);
+                        $('#timerow-' + String(i)).children().eq(1).html(todaySet.size + ' Tutors').css('background-color', color);
                     }
 
                     // $('#timerow-' + String(i)).attr('data-original-title', heatCache['total'] + ' tutors');
@@ -469,9 +490,9 @@ function startup(date) {
         $('#cday-' + String(i + 1)).html(tempDate.getDate());
         $('#cdow-' + String(i + 1)).html(dayNames[tempDate.getDay()]);
         dates.push(tempDate);
-        var cachedTotals = heatMapData['totals'];
-        if ((i + 1) in heatMapData) {
-            var cachedDay = heatMapData[(i + 1)];
+        var cachedTotals = dataHeatMap['totals'];
+        if ((i + 1) in dataHeatMap) {
+            var cachedDay = dataHeatMap[(i + 1)];
             if (filtered) {
                 //TODO: FILTER
             } else { //2196f3
@@ -490,8 +511,8 @@ function startup(date) {
 
 }
 
-$(document).ready(function() {
-    var d = addDays(new Date(), 1);
+function booteMeUp() {
+    var d = addDays(new Date(whatsToday), 1);
 
     startup((d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear());
     setup();
@@ -519,5 +540,18 @@ $(document).ready(function() {
         }
 
     }, 60000);
+}
+
+socket.on('current_cal', function(dat) {
+    data = dat['message'];
+    console.log(dat)
+    dataHeatMap = dat['heatmap'];
+    whatsToday = dat['whatsToday']
+    booteMeUp();
+
+});
+
+$(document).ready(function() {
+    socket.emit('main_cal');
     // 60000
 });
