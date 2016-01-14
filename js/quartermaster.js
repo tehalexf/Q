@@ -206,6 +206,7 @@ function selectDate(datenumber) {
 
         if (dataCache) {
             for (var i = 0; i < 48; i++) {
+                $('#timerow-' + String(i)).children().eq(1).html('0 Tutors').css('background-color', color);
                 if (String(i) in dataCache) {
 
                     var todaySet = new Set();
