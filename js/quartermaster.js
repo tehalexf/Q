@@ -9,6 +9,7 @@ var thisDateIndex = 0;
 var rightNow = -1;
 var socket = io.connect('http://d.rhocode.com:5010'); //SocketIO Connection
 var whatsToday = '01/01/2016';
+
 var data = {
     //format is day# : hour# : data
     1: {
@@ -251,14 +252,14 @@ function selectDate(datenumber) {
         thisHour = hour;
 
     } else {
-
-        $('.myelement').slick('slickGoTo', 16, false);
+        var startHour = 20;
+        $('.myelement').slick('slickGoTo', startHour, false);
         $('.selected-box').removeClass('selected-box');
-        $('#heatrow-' + String(16)).addClass('selected-box');
+        $('#heatrow-' + String(startHour)).addClass('selected-box');
         $('.time-btn').removeClass('active');
         $('.btn-currentday').removeClass('btn-currentday');
-        $('#timerow-16').addClass('active');
-        thisHour = 16;
+        $('#timerow-' + String(startHour)).addClass('active');
+        thisHour = startHour;
     }
 
     loadCorrectData();
